@@ -219,7 +219,7 @@ static NSDictionary* launchOptions = nil;
     }
 
     // Clean-up the object, assume it's been handled from now, prevent double processing
-    [self.userDefaults removeObjectForKey:@"image"];
+    [self.userDefaults removeObjectForKey:@"share"];
 
     // Extract sharing data, make sure that it is valid
     if (![object isKindOfClass:[NSDictionary class]]) {
@@ -230,9 +230,10 @@ static NSDictionary* launchOptions = nil;
     NSData *data = dict[@"data"];
     NSString *text = dict[@"text"];
     NSString *name = dict[@"name"];
+    NSString *sharedUrl = dict[@"sharedUrl"];
     self.backURL = dict[@"backURL"];
     NSString *type = [self mimeTypeFromUti:dict[@"uti"]];
-    if (![data isKindOfClass:NSData.class] || ![text isKindOfClass:NSString.class]) {
+    if (![sharedUrl isKindOfClass:NSString.class]) {
         [self debug:@"[checkForFileToShare] Data content is invalid"];
         return;
     }
@@ -246,8 +247,7 @@ static NSDictionary* launchOptions = nil;
 
     // Send to javascript
     [self debug:[NSString stringWithFormat:
-        @"[checkForFileToShare] Sharing text \"%@\" and a %d bytes image",
-        text, data.length]];
+        @"[checkForFileToShare] Sharing url \"%@\"", sharedUrl]];
 
     NSString *uri = [NSString stringWithFormat: @"shareextension://index=0,name=%@,type=%@",
         name, type];
@@ -255,12 +255,11 @@ static NSDictionary* launchOptions = nil;
         @"action": @"SEND",
         @"exit": @YES,
         @"items": @[@{
-            @"text" : text,
-            @"base64": [data convertToBase64],
             @"type": type,
             @"utis": utis,
             @"uri": uri,
-            @"name": name
+            @"name": name,
+            @"sharedUrl": sharedUrl,
         }]
     }];
     pluginResult.keepCallback = [NSNumber numberWithBool:YES];
