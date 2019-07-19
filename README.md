@@ -54,9 +54,7 @@ On the Cordova App side, the plugin checks listens for app start or resume event
 Here's the promised one liner:
 
 ```
-cordova plugin add https://github.com/bryanleetc/cordova-plugin-openwith \
-  --variable IOS_URL_SCHEME=ccfoveaopenwithdemo \
-  --variable IOS_UNIFORM_TYPE_IDENTIFIER=public.url
+cordova plugin add https://github.com/bryanleetc/cordova-plugin-openwith --variable IOS_URL_SCHEME=ccfoveaopenwithdemo --variable IOS_UNIFORM_TYPE_IDENTIFIER=public.url --variable IOS_GROUP_IDENTIFIER=group.xxx.shareextension
 ```
 
 | variable | example | notes |
