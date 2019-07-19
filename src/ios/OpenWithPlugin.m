@@ -212,7 +212,7 @@ static NSDictionary* launchOptions = nil;
     }
 
     [self.userDefaults synchronize];
-    NSObject *object = [self.userDefaults objectForKey:@"image"];
+    NSObject *object = [self.userDefaults objectForKey:@"share"];
     if (object == nil) {
         [self debug:@"[checkForFileToShare] Nothing to share"];
         return;
