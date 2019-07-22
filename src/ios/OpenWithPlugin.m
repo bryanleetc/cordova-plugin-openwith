@@ -230,6 +230,7 @@ static NSDictionary* launchOptions = nil;
     NSString *text = dict[@"text"];
     NSString *name = dict[@"name"];
     NSString *sharedUrl = dict[@"sharedUrl"];
+    NSString *sharedUrlPath = dict[@"sharedUrlPath"];
     self.backURL = dict[@"backURL"];
     NSString *type = [self mimeTypeFromUti:dict[@"uti"]];
     if (![sharedUrl isKindOfClass:NSString.class]) {
@@ -259,6 +260,7 @@ static NSDictionary* launchOptions = nil;
             @"uri": uri,
             @"name": name,
             @"sharedUrl": sharedUrl,
+            @"sharedUrlPath": sharedUrlPath,
         }]
     }];
     pluginResult.keepCallback = [NSNumber numberWithBool:YES];

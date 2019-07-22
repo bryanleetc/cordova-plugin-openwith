@@ -124,9 +124,11 @@
 
                 NSData *data = [[NSData alloc] init];
                 NSString *sharedUrl = [[NSString alloc] init];
+                NSArray *sharedUrlPath = [[NSArray alloc] init];
 
                 if([(NSObject*)item isKindOfClass:[NSURL class]]) {
                     sharedUrl = item.absoluteString;
+                    sharedUrlPath = item.pathComponents;
                 }
                 if([(NSObject*)item isKindOfClass:[UIImage class]]) {
                     data = UIImagePNGRepresentation((UIImage*)item);
@@ -153,6 +155,7 @@
                     @"utis": utis,
                     @"name": suggestedName,
                     @"sharedUrl": sharedUrl,
+                    @"sharedUrlPath": sharedUrlPath,
                 };
                 [self.userDefaults setObject:dict forKey:@"share"];
                 [self.userDefaults synchronize];
