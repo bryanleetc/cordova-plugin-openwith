@@ -115,6 +115,9 @@
     [self setup];
     [self debug:@"[submit]"];
 
+    NSExtensionItem *rawItem = (NSExtensionItem*)self.extensionContext.inputItems[0];
+    NSString *pageTitle = rawItem.attributedContentText.string;
+
     for (NSItemProvider* itemProvider in ((NSExtensionItem*)self.extensionContext.inputItems[0]).attachments) {
 
         if ([itemProvider hasItemConformingToTypeIdentifier:SHAREEXT_UNIFORM_TYPE_IDENTIFIER]) {
@@ -156,6 +159,7 @@
                     @"name": suggestedName,
                     @"sharedUrl": sharedUrl,
                     @"sharedUrlPath": sharedUrlPath,
+                    @"pageTitle": pageTitle,
                 };
                 [self.userDefaults setObject:dict forKey:@"share"];
                 [self.userDefaults synchronize];

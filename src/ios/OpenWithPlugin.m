@@ -231,6 +231,7 @@ static NSDictionary* launchOptions = nil;
     NSString *name = dict[@"name"];
     NSString *sharedUrl = dict[@"sharedUrl"];
     NSString *sharedUrlPath = dict[@"sharedUrlPath"];
+    NSString *pageTitle = dict[@"pageTitle"];
     self.backURL = dict[@"backURL"];
     NSString *type = [self mimeTypeFromUti:dict[@"uti"]];
     if (![sharedUrl isKindOfClass:NSString.class]) {
@@ -261,6 +262,7 @@ static NSDictionary* launchOptions = nil;
             @"name": name,
             @"sharedUrl": sharedUrl,
             @"sharedUrlPath": sharedUrlPath,
+            @"pageTitle": pageTitle,
         }]
     }];
     pluginResult.keepCallback = [NSNumber numberWithBool:YES];
