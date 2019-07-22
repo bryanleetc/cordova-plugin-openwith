@@ -126,7 +126,6 @@
                 NSString *sharedUrl = [[NSString alloc] init];
 
                 if([(NSObject*)item isKindOfClass:[NSURL class]]) {
-                    data = [NSData dataWithContentsOfURL:(NSURL*)item];
                     sharedUrl = item.absoluteString;
                 }
                 if([(NSObject*)item isKindOfClass:[UIImage class]]) {
@@ -149,7 +148,6 @@
                 }
                 NSDictionary *dict = @{
                     @"backURL": self.backURL,
-                    @"data" : data,
                     @"url": sharedUrl,
                     @"uti": uti,
                     @"utis": utis,

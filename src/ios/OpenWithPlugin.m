@@ -227,14 +227,13 @@ static NSDictionary* launchOptions = nil;
         return;
     }
     NSDictionary *dict = (NSDictionary*)object;
-    NSData *data = dict[@"data"];
     NSString *text = dict[@"text"];
     NSString *name = dict[@"name"];
     NSString *sharedUrl = dict[@"sharedUrl"];
     self.backURL = dict[@"backURL"];
     NSString *type = [self mimeTypeFromUti:dict[@"uti"]];
     if (![sharedUrl isKindOfClass:NSString.class]) {
-        [self debug:@"[checkForFileToShare] Data content is invalid"];
+        [self debug:@"[checkForFileToShare] Invalid URL being shared"];
         return;
     }
     NSArray *utis = dict[@"utis"];
